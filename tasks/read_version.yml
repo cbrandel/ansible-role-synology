@@ -1,0 +1,28 @@
+---
+# read and parse the /etc/VERSION file
+- name: "[Synology] - read VERSION file"
+  shell: awk -F "=" '/productversion/ {print $2}' /etc/VERSION | tr -d ' "'
+  register: grep_output
+  changed_when: false
+- name:
+  set_fact:
+    ansible_distribution_version: "{{ grep_output.stdout}}"
+
+- name:
+  shell: awk -F "=" '/majorversion/ {print $2}' /etc/VERSION | tr -d ' "'
+  register: grep_output
+  changed_when: false
+- name:
+  set_fact:
+    ansible_distribution_major_version: "{{ grep_output.stdout}}"
+
+- name:
+  shell: awk -F "=" '/buildphase/ {print $2}' /etc/VERSION | tr -d ' "'
+  register: grep_output
+  changed_when: false
+- name:
+  set_fact:
+    ansible_distribution_release: "{{ grep_output.stdout}}"
+
+- debug:
+    msg: "{{ansible_os_family}} {{ansible_distribution}} {{ansible_distribution_version}} {{ansible_distribution_release}}"

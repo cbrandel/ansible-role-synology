@@ -1,0 +1,12 @@
+---
+# tasks file for ansible-role-synology
+# detect Synology
+# ansible_cmdline.syno_hw_version "DS*"
+- name: "[Synology] - detecting Synology"
+  set_fact:
+    ansible_os_family: "Synology"
+    ansible_distribution: "DSM"
+  when: ansible_cmdline.syno_hw_version | match("DS*")
+
+- include: "read_version.yml"
+  when: ansible_os_family == "Synology"
