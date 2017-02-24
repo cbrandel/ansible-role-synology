@@ -6,7 +6,7 @@
   set_fact:
     ansible_os_family: "Synology"
     ansible_distribution: "DSM"
-  when: ansible_cmdline.syno_hw_version | match("DS*")
+  when: '"DS" in ansible_cmdline.syno_hw_version'
 
 - include: "read_version.yml"
   when: ansible_os_family == "Synology"
