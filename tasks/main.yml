@@ -8,5 +8,5 @@
     ansible_distribution: "DSM"
   when: '"DS" in ansible_cmdline.syno_hw_version'
 
-- include: "read_version.yml"
+- import_tasks: "read_version.yml"
   when: ansible_os_family == "Synology"

@@ -4,7 +4,7 @@ Role that sets ansible facts for Synology target hosts.
 
 ## Requirements
 ### Ansible version
-Ansible 2.0
+Ansible 2.4
 ### Setup module:
 The role uses facts gathered by Ansible on the remote host. If you disable the Setup module in your playbook, the role will not work properly.
 
